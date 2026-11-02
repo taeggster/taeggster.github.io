@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tae Kim</title>
+  <!-- Keep this page and its images out of search engines and web archives -->
+  <meta name="robots" content="noindex, nofollow, noimageindex, noarchive">
+  <meta name="description" content="Tae Kim – Computer Science MSc student at ETH Zurich working on explainability and causal reasoning.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+  <style>
+    /* Palette from Tae's drawings: pencil black on white, pale sky blue echoing the sea photo, a few crayon accents */
+    :root {
+      color-scheme: light;
+      --paper: #ffffff;
+      --ink: #161616;
+      --muted: #5c5c5c;
+      --night: #e6eff8;
+      --night-text: #161616;
+      --night-muted: #5c5c5c;
+      --pink: #e94f9a;
+      --blue: #5865d6;
+      --hair: #f2b01e;
+    }
+
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Newsreader", Georgia, serif;
+      font-size: 18px;
+      line-height: 1.65;
+      overflow-x: clip;
+    }
+    main { max-width: 760px; margin: 0 auto; padding: 64px 20px 48px; }
+    a {
+      color: inherit;
+      text-decoration-color: var(--pink);
+      text-decoration-thickness: 2px;
+      text-underline-offset: 4px;
+    }
+    a:hover { text-decoration-color: var(--blue); }
+    :focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; border-radius: 4px; }
+    p { margin: 0 0 16px; }
+    strong, b { font-weight: 600; }
+
+    /* Hero */
+    .hero {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 44px;
+      align-items: center;
+      margin-bottom: 48px;
+    }
+    .pf {
+      width: 280px;
+      height: 350px;
+      border-radius: 140px 140px 14px 14px;
+      overflow: hidden;
+      background: #e6eff8;
+    }
+    .pf img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 48% 40%;
+      transform: scale(1.55);
+      transform-origin: 48% 36%;
+      display: block;
+    }
+    h1 {
+      font-family: "Familjen Grotesk", system-ui, sans-serif;
+      font-weight: 500;
+      font-size: clamp(2.6rem, 7vw, 3.4rem);
+      line-height: 0.95;
+      letter-spacing: -0.01em;
+      margin: 0 0 6px;
+    }
+    .say { font-size: 0.95rem; color: var(--muted); margin: 0 0 14px; }
+    .say em { font-style: normal; font-weight: 600; color: var(--ink); }
+    .tagline { font-size: 1.1rem; color: var(--muted); margin: 0 0 18px; }
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 24px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      font-weight: 600;
+    }
+
+    .intro p { max-width: 62ch; }
+
+    h2 {
+      font-family: "Familjen Grotesk", system-ui, sans-serif;
+      font-weight: 500;
+      font-size: 2rem;
+      line-height: 1.15;
+      margin: 64px 0 22px;
+    }
+
+    .item { margin-bottom: 30px; max-width: 64ch; }
+    .item-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+    .item-title { font-weight: 600; font-size: 1.05rem; }
+    .item-date { color: var(--muted); font-size: 0.92rem; white-space: nowrap; }
+    .item-sub { color: var(--muted); font-style: italic; }
+    .item p { margin: 6px 0 0; }
+
+    /* The night panel, after the leaf drawing */
+    .night {
+      position: relative;
+      margin-top: 64px;
+    }
+    .night h2:first-of-type { margin-top: 0; }
+
+    /* Carousel */
+    .carousel { margin-top: 28px; }
+    .track {
+      display: flex;
+      gap: 14px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+    }
+    .track::-webkit-scrollbar { display: none; }
+    .track img {
+      flex: 0 0 auto;
+      width: min(280px, 72%);
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      border-radius: 12px;
+      scroll-snap-align: start;
+      display: block;
+      background: #2a2a2a;
+    }
+    .controls { display: flex; align-items: center; gap: 10px; margin-top: 16px; }
+    .controls button {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1.5px solid var(--night-muted);
+      background: transparent;
+      color: var(--night-text);
+      font: inherit;
+      font-size: 1.05rem;
+      cursor: pointer;
+    }
+    .controls button:hover { border-color: var(--ink); background: rgba(0,0,0,0.06); }
+    .dots { display: flex; gap: 7px; margin-left: 6px; }
+    .dots span { width: 7px; height: 7px; border-radius: 50%; background: rgba(0,0,0,0.18); transition: background 0.2s; }
+    .dots span.on { background: var(--ink); }
+
+    /* Things I've made */
+    .made { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; align-items: start; }
+    .made figure { margin: 0; }
+    .made .wide { grid-column: 1 / -1; }
+    .made img, .made video { width: 100%; height: auto; display: block; border-radius: 10px; background: #2a2a2a; }
+    .made img { outline: 1px solid #e2e2e2; outline-offset: -1px; }
+    .yt { aspect-ratio: 16 / 9; border-radius: 10px; overflow: hidden; background: #2a2a2a; }
+    .yt iframe { width: 100%; height: 100%; border: 0; display: block; }
+    .made figcaption { font-size: 0.9rem; margin-top: 8px; color: var(--night-muted); }
+
+
+    .divider { border: 0; border-top: 1px solid #dcdcdc; margin: 72px 0 0; }
+
+    footer { margin-top: 60px; color: var(--muted); font-size: 0.9rem; }
+
+    @media (max-width: 680px) {
+      body { font-size: 17px; }
+      main { padding-top: 40px; }
+      .hero { grid-template-columns: 1fr; gap: 26px; }
+      .pf { width: 240px; height: 300px; border-radius: 120px 120px 12px 12px; }
+      .item-head { flex-direction: column; gap: 0; }
+      .made { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .track { scroll-behavior: auto; }
+    }
+
+    /* Foldable entries */
+    details.item summary { list-style: none; cursor: pointer; }
+    details.item summary::-webkit-details-marker { display: none; }
+    .teaser { margin: 6px 0 0; }
+    .more {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 6px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    .more > span {
+      text-decoration: underline;
+      text-decoration-color: var(--pink);
+      text-decoration-thickness: 2px;
+      text-underline-offset: 4px;
+    }
+    .more::after { content: "▾"; font-size: 0.8rem; transition: transform 0.2s; }
+    details[open] .more::after { transform: rotate(180deg); }
+    .close-label, details[open] .open-label { display: none; }
+    details[open] .close-label { display: inline; }
+    summary:hover .more > span { text-decoration-color: var(--blue); }
+    .details-body { padding-top: 4px; }
+    @media (prefers-reduced-motion: reduce) { .more::after { transition: none; } }
+  </style>
+</head>
+<body>
+
+<main>
+
+  <section class="hero">
+    <div class="pf"><img src="photo.jpeg" alt="Tae Kim sitting on a wall above the sea"></div>
+    <div>
+      <h1>Tae Kim</h1>
+      <p class="say">Short for Tae Hee, and pronounced <em>“Tay”</em></p>
+      <p class="tagline">Computer Science MSc student at ETH Zurich</p>
+      <ul class="links">
+        <li><a href="#" class="mail" data-user="taekim" data-domain="ethz.ch">Email</a></li>
+        <li><a href="https://github.com/taeggster">GitHub</a></li>
+        <li><a href="cv.pdf">CV</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="intro">
+    <p>
+      I'm studying Visual and Interactive Computing at ETH Zurich. I like learning
+      a new field well enough to apply computer science to it, so far genomics,
+      rainforest ecology, education and manufacturing.
+    </p>
+  </div>
+
+  <section>
+    <h2>Experience</h2>
+
+    <details class="item">
+      <summary>
+        <div class="item-head">
+          <span class="item-title">AI Research Intern, INEEJI</span>
+          <span class="item-date">Jun 2026 – now</span>
+        </div>
+          <div class="item-sub">AI for manufacturing, South Korea</div>
+          <p class="teaser">Causal modelling for an industrial glass furnace, and demand forecasting for a food manufacturer.</p>
+        <span class="more"><span class="open-label">Show details</span><span class="close-label">Hide details</span></span>
+      </summary>
+      <div class="details-body">
+        <p><strong>Emissions forecasting and control.</strong> The existing NOx model for an industrial glass furnace leaned mostly on past NOx values, so it predicted reasonably well while learning little about how the furnace actually works. I built a pipeline that derives causal relations from domain knowledge, tests them against the data, and validates models by simulating interventions. It cut overall prediction error by 16% (RMSE 5.7 → 4.8 ppm), and by about a third when the oxygen ratio was changed (6.8 → 4.5 ppm), which is the case that matters for control. The team has since adopted the pipeline.</p>
+        <p><strong>Demand forecasting.</strong> Built and deployed a two-stage system for ~300 products of a food manufacturer, combining the Chronos-2 time-series foundation model with a tree-based model. It lowered forecast error (WAPE) by 44% against the baseline and by 21% against the previous production model. Along the way I found that Shapley attributions missed the weekly rhythm the model clearly used: testing it directly showed that most of that pattern lived in the model's weights, not its input.</p>
+        </div>
+    </details>
+
+    <details class="item">
+      <summary>
+        <div class="item-head">
+          <span class="item-title">Research Intern, Laboratory of Toxicology, ETH Zurich</span>
+          <span class="item-date">Feb – Jul 2025</span>
+        </div>
+        <div class="item-sub">Supervised by Dr. Takhaveev and Prof. Stelling</div>
+            <p class="teaser">Statistics on DNA oxidation in the brain: how stress and time of day affect it, and how it relates to gene expression.</p>
+        <span class="more"><span class="open-label">Show details</span><span class="close-label">Hide details</span></span>
+      </summary>
+      <div class="details-body">
+        <p>Studied how chronic stress and time of day affect DNA oxidation in mouse brain tissue, and how it relates to gene expression: up to 106 million features, only 20 samples. I ran two-way ANOVA on every feature with false-discovery control, alongside Random Forest, XGBoost and multi-omics factor analysis. I also noticed that morning and evening samples had been processed separately, which could fake a time-of-day effect, so I based the main conclusions on the effects that confound couldn't explain.</p>
+        <p>I also built a pipeline that runs the lab's common statistical tests in parallel on the computing cluster, which the lab now uses.</p>
+        </div>
+    </details>
+
+    <div class="item">
+      <div class="item-head">
+        <span class="item-title">Teaching Assistant, Linear Algebra, ETH Zurich</span>
+        <span class="item-date">Autumn 2024 &amp; 2025</span>
+      </div>
+      <p>Led weekly exercise sessions for first-semester computer science students. I also wrote weekly summaries of the material.</p>
+    </div>
+
+    <div class="item">
+      <div class="item-head">
+        <span class="item-title">Instructor, GirlsCodeToo</span>
+        <span class="item-date">Sep 2024 – Feb 2025</span>
+      </div>
+      <p>Designed and taught programming workshops for primary and secondary school pupils across Switzerland.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Projects</h2>
+
+    <details class="item">
+      <summary>
+        <div class="item-head">
+          <span class="item-title">Evaluating AI tutors with LLMs</span>
+          <span class="item-date">Sep 2024 – Feb 2025</span>
+        </div>
+          <div class="item-sub">Bachelor's thesis with Prof. Mrinmaya Sachan, LRE Lab, ETH AI Center, grade 6/6</div>
+          <p class="teaser">Using large language models to judge how well tutors teach.</p>
+        <span class="more"><span class="open-label">Show details</span><span class="close-label">Hide details</span></span>
+      </summary>
+      <div class="details-body">
+        <p>A framework that uses large language models to judge the teaching quality of tutor responses, comparing prompting strategies across LLaMA and GPT models. I later added fine-tuning experiments, and fine-tuned GPT performed best. I also open-sourced an annotated dataset of tutoring dialogues.</p>
+        </div>
+    </details>
+
+    <details class="item">
+      <summary>
+        <div class="item-head">
+          <span class="item-title">Mixed reality for autonomous racing</span>
+        </div>
+          <div class="item-sub">ETH course project, grade 6/6</div>
+          <p class="teaser">A Meta Quest 3 app that shows live data from an autonomous race car on the track.</p>
+        <span class="more"><span class="open-label">Show details</span><span class="close-label">Hide details</span></span>
+      </summary>
+      <div class="details-body">
+        <p>In a team of four, we built a Meta Quest 3 app that overlays live data from the Chronos autonomous racing platform onto the physical track. I worked on the data connection from the racing platform to the headset, including fixing a lag that made the car's planned route trail behind it.</p>
+        </div>
+    </details>
+
+    <details class="item">
+      <summary>
+        <div class="item-head">
+          <span class="item-title">Rainforest canopy mapping</span>
+          <span class="item-date">Apr – May 2024</span>
+        </div>
+          <div class="item-sub">AI + Environment Hackathon, 4 weeks, team of three</div>
+          <p class="teaser">Mapping tree canopies and species in the Amazon from LiDAR and images.</p>
+        <span class="more"><span class="open-label">Show details</span><span class="close-label">Hide details</span></span>
+      </summary>
+      <div class="details-body">
+        <p>Existing methods use either LiDAR or images; we had both. I used canopy outlines from the LiDAR data as ground truth to fine-tune image-based models, and our pipeline also classified tree species. GainForest used our pipeline in its XPRIZE Rainforest Finals.</p>
+        </div>
+    </details>
+  </section>
+
+  <section>
+    <h2>Education</h2>
+
+    <div class="item">
+      <div class="item-head">
+        <span class="item-title">MSc Computer Science, ETH Zurich</span>
+        <span class="item-date">Sep 2025 – now</span>
+      </div>
+      <div class="item-sub">Major in Visual and Interactive Computing</div>
+    </div>
+
+    <div class="item">
+      <div class="item-head">
+        <span class="item-title">BSc Computer Science, ETH Zurich</span>
+        <span class="item-date">Sep 2021 – Feb 2025</span>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="item-head">
+        <span class="item-title">Abitur, Christian-Ernst-Gymnasium Erlangen</span>
+        <span class="item-date">2016 – 2020</span>
+      </div>
+      <div class="item-sub">Distinction in physics (Deutsche Physikalische Gesellschaft award) and mathematics</div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <section class="night">
+
+    <h2>Outside of work</h2>
+
+    <div class="intro">
+      <p>
+        I grew up between countries. I was born in Korea, spent two stretches of my
+        childhood in the US, moved to Germany at 14 without speaking any German and
+        finished school there, then came to Switzerland for university. So I speak
+        Korean, German and English, and I learned Italian in school.
+        In my free time I love stories and making things: I read, watch a lot of
+        movies, write, draw, and occasionally make stop-motion videos. I also try to
+        stay active, and like every student in Switzerland, I like going on hikes.
+      </p>
+    </div>
+
+    <div class="carousel">
+      <div class="track" id="track" tabindex="0" aria-label="Personal photos, scroll sideways">
+        <img src="kyoto.jpeg" alt="In front of a large temple gate in Kyoto" loading="lazy">
+        <img src="cafe.jpeg" style="object-position: 52% 50%" alt="With a bowl of mango shaved ice in a café" loading="lazy">
+        <img src="snow.jpeg" alt="Making a snow angel" loading="lazy">
+        <img src="hike.jpeg" alt="Holding apples" loading="lazy">
+      </div>
+      <div class="controls">
+        <button type="button" id="prev" aria-label="Previous photo">&larr;</button>
+        <button type="button" id="next" aria-label="Next photo">&rarr;</button>
+        <div class="dots" id="dots" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <h2>Things I've made</h2>
+
+    <div class="made">
+      <figure>
+        <img src="drawing1.jpeg" alt="Digital drawing of an upside-down figure hanging from a rope, with trails of green leaves" loading="lazy">
+      </figure>
+      <figure>
+        <img src="drawing2.jpeg" alt="Digital drawing of a big black creature full of eyes, with small worried colorful blobs floating away" loading="lazy">
+      </figure>
+      <figure class="wide">
+        <div class="yt">
+          <iframe src="https://www.youtube-nocookie.com/embed/N2DuOO-4oMI?rel=0" title="Stop-motion video" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>
+        </div>
+        <figcaption>Stop-motion video</figcaption>
+      </figure>
+    </div>
+
+  </section>
+
+  <footer>© 2026 Tae Kim</footer>
+
+</main>
+
+<script>
+  // Build the email link in the browser, so spam bots can't read the address from the page source
+  document.querySelectorAll('.mail').forEach(function (a) {
+    a.href = 'mailto:' + a.dataset.user + '@' + a.dataset.domain;
+  });
+</script>
+
+<script>
+  (function () {
+    var track = document.getElementById('track');
+    var slides = track.querySelectorAll('img');
+    var dots = document.getElementById('dots');
+    slides.forEach(function () { dots.appendChild(document.createElement('span')); });
+
+    function current() {
+      var x = track.scrollLeft, best = 0, bestDist = Infinity;
+      if (x + track.clientWidth >= track.scrollWidth - 4) return slides.length - 1;
+      slides.forEach(function (s, i) {
+        var d = Math.abs(s.offsetLeft - track.offsetLeft - x);
+        if (d < bestDist) { bestDist = d; best = i; }
+      });
+      return best;
+    }
+    function go(i) {
+      i = Math.max(0, Math.min(slides.length - 1, i));
+      track.scrollTo({ left: slides[i].offsetLeft - track.offsetLeft });
+    }
+    function paint() {
+      var c = current();
+      dots.querySelectorAll('span').forEach(function (d, i) { d.classList.toggle('on', i === c); });
+    }
+    document.getElementById('prev').addEventListener('click', function () { go(current() - 1); });
+    document.getElementById('next').addEventListener('click', function () { go(current() + 1); });
+    track.addEventListener('scroll', function () { window.requestAnimationFrame(paint); });
+    track.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') { e.preventDefault(); go(current() + 1); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); go(current() - 1); }
+    });
+    paint();
+  })();
+</script>
+</body>
+</html>
