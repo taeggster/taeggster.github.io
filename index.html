@@ -206,7 +206,22 @@
     details[open] .close-label { display: inline; }
     summary:hover .more > span { text-decoration-color: var(--blue); }
     .details-body { padding-top: 4px; }
-    .item-links { margin-top: 10px; font-size: 0.9rem; }
+    .item-links {
+      gap: 8px;
+      margin-top: 14px;
+      font-family: "Familjen Grotesk", system-ui, sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+    .item-links a {
+      display: inline-block;
+      padding: 5px 14px;
+      border: 1.5px solid var(--muted);
+      border-radius: 999px;
+      line-height: 1.4;
+      text-decoration: none;
+    }
+    .item-links a:hover { border-color: var(--ink); background: rgba(0,0,0,0.06); }
     @media (prefers-reduced-motion: reduce) { .more::after { transition: none; } }
   </style>
 </head>
