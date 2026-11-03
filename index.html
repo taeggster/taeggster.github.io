@@ -195,13 +195,14 @@
       font-weight: 600;
     }
     .more > span {
+      min-width: 5.9em;
       text-decoration: underline;
       text-decoration-color: var(--pink);
       text-decoration-thickness: 2px;
       text-underline-offset: 4px;
     }
-    .more::after { content: "▾"; font-size: 0.8rem; transition: transform 0.2s; }
-    details[open] .more::after { transform: rotate(180deg); }
+    .more::after { content: "▾"; font-size: 0.8rem; }
+    details[open] .more::after { content: "▴"; }
     .close-label, details[open] .open-label { display: none; }
     details[open] .close-label { display: inline; }
     summary:hover .more > span { text-decoration-color: var(--blue); }
@@ -222,7 +223,6 @@
       text-decoration: none;
     }
     .item-links a:hover { border-color: var(--ink); background: rgba(0,0,0,0.06); }
-    @media (prefers-reduced-motion: reduce) { .more::after { transition: none; } }
   </style>
 </head>
 <body>
@@ -451,6 +451,15 @@
   <footer>© 2026 Tae Kim</footer>
 
 </main>
+
+<script>
+  // Clicking a toggle quickly shouldn't highlight the text around it
+  document.querySelectorAll('details.item summary').forEach(function (s) {
+    s.addEventListener('mousedown', function (e) {
+      if (e.detail > 1) e.preventDefault();
+    });
+  });
+</script>
 
 <script>
   // Build the email link in the browser, so spam bots can't read the address from the page source
