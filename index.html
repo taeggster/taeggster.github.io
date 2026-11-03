@@ -206,6 +206,7 @@
     details[open] .close-label { display: inline; }
     summary:hover .more > span { text-decoration-color: var(--blue); }
     .details-body { padding-top: 4px; }
+    .item-links { margin-top: 10px; font-size: 0.9rem; }
     @media (prefers-reduced-motion: reduce) { .more::after { transition: none; } }
   </style>
 </head>
@@ -229,9 +230,10 @@
 
   <div class="intro">
     <p>
-      I'm studying Visual and Interactive Computing at ETH Zurich. I like learning
-      a new field well enough to apply computer science to it, so far genomics,
-      rainforest ecology, education and manufacturing.
+      I like learning a new field well enough to apply computer science to it,
+      so far genomics, rainforest ecology, education and manufacturing. Lately
+      I’ve become most interested in explainable machine learning: how to explain
+      behavior a model draws from what it learned in training, not just from its input.
     </p>
   </div>
 
@@ -245,12 +247,13 @@
           <span class="item-date">Jun 2026 – now</span>
         </div>
           <div class="item-sub">AI for manufacturing, South Korea</div>
-          <p class="teaser">Causal modelling for an industrial glass furnace, and demand forecasting for a food manufacturer.</p>
+          <p class="teaser">Causal modelling for an industrial glass furnace, and explaining a time-series foundation model used for demand forecasting.</p>
         <span class="more"><span class="open-label">Show details</span><span class="close-label">Hide details</span></span>
       </summary>
       <div class="details-body">
         <p><strong>Emissions forecasting and control.</strong> The existing NOx model for an industrial glass furnace leaned mostly on past NOx values, so it predicted reasonably well while learning little about how the furnace actually works. I built a pipeline that derives causal relations from domain knowledge, tests them against the data, and validates models by simulating interventions. It cut overall prediction error by 16% (RMSE 5.7 → 4.8 ppm), and by about a third when the oxygen ratio was changed (6.8 → 4.5 ppm), which is the case that matters for control. The team has since adopted the pipeline.</p>
-        <p><strong>Demand forecasting.</strong> Built and deployed a two-stage system for ~300 products of a food manufacturer, combining the Chronos-2 time-series foundation model with a tree-based model. It lowered forecast error (WAPE) by 44% against the baseline and by 21% against the previous production model. Along the way I found that Shapley attributions missed the weekly rhythm the model clearly used: testing it directly showed that most of that pattern lived in the model's weights, not its input.</p>
+        <p><strong>Demand forecasting.</strong> Built and deployed a two-stage system for ~300 products of a food manufacturer, combining the Chronos-2 time-series foundation model with a tree-based model. It lowered forecast error (WAPE) by 44% against the baseline and by 21% against the previous production model.</p>
+        <p><strong>Explaining Chronos.</strong> Shapley attributions missed the weekly rhythm the model clearly used. Testing it directly showed that most of that pattern lived in the model's weights, not its input, which is something input-based explanations cannot capture.</p>
         </div>
     </details>
 
@@ -267,6 +270,9 @@
       <div class="details-body">
         <p>Studied how chronic stress and time of day affect DNA oxidation in mouse brain tissue, and how it relates to gene expression: up to 106 million features, only 20 samples. I ran two-way ANOVA on every feature with false-discovery control, alongside Random Forest, XGBoost and multi-omics factor analysis. I also noticed that morning and evening samples had been processed separately, which could fake a time-of-day effect, so I based the main conclusions on the effects that confound couldn't explain.</p>
         <p>I also built a pipeline that runs the lab's common statistical tests in parallel on the computing cluster, which the lab now uses.</p>
+        <ul class="links item-links">
+          <li><a href="https://github.com/taeggster/guanine-oxidation-analysis">GitHub</a></li>
+        </ul>
         </div>
     </details>
 
@@ -302,6 +308,10 @@
       </summary>
       <div class="details-body">
         <p>A framework that uses large language models to judge the teaching quality of tutor responses, comparing prompting strategies across LLaMA and GPT models. I later added fine-tuning experiments, and fine-tuned GPT performed best. I also open-sourced an annotated dataset of tutoring dialogues.</p>
+        <ul class="links item-links">
+          <li><a href="BachelorThesis.pdf">Thesis (PDF)</a></li>
+          <li><a href="https://github.com/taeggster/TutorEval">GitHub</a></li>
+        </ul>
         </div>
     </details>
 
@@ -316,6 +326,10 @@
       </summary>
       <div class="details-body">
         <p>In a team of four, we built a Meta Quest 3 app that overlays live data from the Chronos autonomous racing platform onto the physical track. I worked on the data connection from the racing platform to the headset, including fixing a lag that made the car's planned route trail behind it.</p>
+        <ul class="links item-links">
+          <li><a href="Mixed_Reality_Report.pdf">Report (PDF)</a></li>
+          <li><a href="https://github.com/Morphylus/unity_ros_teleoperation">GitHub</a></li>
+        </ul>
         </div>
     </details>
 
@@ -331,6 +345,9 @@
       </summary>
       <div class="details-body">
         <p>Existing methods use either LiDAR or images; we had both. I used canopy outlines from the LiDAR data as ground truth to fine-tune image-based models, and our pipeline also classified tree species. GainForest used our pipeline in its XPRIZE Rainforest Finals.</p>
+        <ul class="links item-links">
+          <li><a href="">GitHub</a></li>
+        </ul>
         </div>
     </details>
   </section>
@@ -376,7 +393,7 @@
         Korean, German and English, and I learned Italian in school.
         In my free time I love stories and making things: I read, watch a lot of
         movies, write, draw, and occasionally make stop-motion videos. I also try to
-        stay active, and like every student in Switzerland, I like going on hikes.
+        stay active and, like every student in Switzerland, I go hiking.
       </p>
     </div>
 
@@ -399,9 +416,11 @@
     <div class="made">
       <figure>
         <img src="drawing1.jpeg" alt="Digital drawing of an upside-down figure hanging from a rope, with trails of green leaves" loading="lazy">
+        <figcaption>Digital drawing, 2025</figcaption>
       </figure>
       <figure>
         <img src="drawing2.jpeg" alt="Digital drawing of a big black creature full of eyes, with small worried colorful blobs floating away" loading="lazy">
+        <figcaption>Digital drawing, 2025</figcaption>
       </figure>
       <figure class="wide">
         <div class="yt">

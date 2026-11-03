@@ -19,3 +19,7 @@ User-agent: Amazonbot
 User-agent: cohere-ai
 User-agent: Diffbot
 Disallow: /
+
+# Keep the PDFs out of search engines.
+User-agent: *
+Disallow: /*.pdf$
